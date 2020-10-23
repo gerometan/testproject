@@ -1,0 +1,29 @@
+server:
+  port: 8888
+
+management:
+  info:
+    build:
+      enabled: true
+    git:
+      enabled: true
+      mode: full
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
+spring:
+  profiles:
+    active: native, git
+  application:
+    name: server-config
+  cloud:
+    config:
+      override-system-properties: false
+      server:
+        native:
+          basedir: ${user.home}/gerome
+          search-locations:
+            config/
+

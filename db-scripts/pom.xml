@@ -9,30 +9,21 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>at.gerome.testproject</groupId>
-	<artifactId>parent-project</artifactId>
+	<artifactId>db-scripts</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>parent-project</name>
-	<description>parent project</description>
-	<packaging>pom</packaging>
-	<modules>
-		<module>server-config</module>
-		<module>product-domain</module>
-		<module>db-scripts</module>
-		<module>configurations</module>
-	</modules>
+	<name>db-scripts</name>
+	<description>Liquibase scripts</description>
 
 	<properties>
 		<java.version>11</java.version>
 	</properties>
 
+	<dependencies>
+		<dependency>
+			<groupId>org.liquibase</groupId>
+			<artifactId>liquibase-core</artifactId>
+		</dependency>
+	</dependencies>
 
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
-		</plugins>
-	</build>
 
 </project>

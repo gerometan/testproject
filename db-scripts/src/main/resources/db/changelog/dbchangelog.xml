@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+	  http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="product_table" author="gerome.tan">
+        <sql>
+            create table product (id varchar(255) not null, inserted timestamp not null, inserted_by varchar(255) not null, updated timestamp not null, updated_by varchar(255) not null,
+            description varchar(123) not null, name varchar(255) not null, primary key (id));
+        </sql>
+    </changeSet>
+
+    <changeSet id="product_order_table" author="gerome.tan">
+        <sql>
+            create table product_order (id varchar(255) not null, inserted timestamp not null, inserted_by varchar(255) not null,
+            updated timestamp not null, updated_by varchar(255) not null, quantity integer not null, product_id varchar(255),
+            primary key (id));
+        </sql>
+    </changeSet>
+
+    <changeSet id="product_order_constraint" author="gerome.tan">
+        <sql>
+            alter table product_order add constraint product_order_fk foreign key (product_id) references product;
+        </sql>
+    </changeSet>
+
+    <changeSet id="product_order_owner_column" author="gerome.tan">
+        <sql>
+            alter table product_order add column owner varchar(255);
+        </sql>
+    </changeSet>
+</databaseChangeLog>

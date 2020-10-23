@@ -1,0 +1,37 @@
+server:
+  port: 8888
+
+management:
+  info:
+    build:
+      enabled: true
+    git:
+      enabled: true
+      mode: full
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
+spring:
+  profiles:
+    active: native, git
+
+  application:
+    name: server-config
+  cloud:
+    config:
+      override-system-properties: false
+      server:
+        git:
+          uri: https://github.com/gerometan/testModules
+          clone-on-start: true
+          search-paths:
+            config/
+          force-pull: true
+          basedir: ${user.home}/gerome
+          username: gerometan
+          password: mermaid$0206
+        native:
+          search-locations:
+            ${user:home}/gerome/config/
