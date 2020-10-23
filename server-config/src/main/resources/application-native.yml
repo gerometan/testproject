@@ -1,5 +1,5 @@
 server:
-  port: 8888
+  port: 8762
 
 management:
   info:
@@ -15,15 +15,16 @@ management:
 
 spring:
   profiles:
-    active: native, git
-  application:
-    name: server-config
+    active: native
   cloud:
+    client.hostname: ${spring.cloud.client.ip-address:localhost}
     config:
       override-system-properties: false
       server:
         native:
-          basedir: ${user.home}/gerome
           search-locations:
-            config/
-
+            classpath:/config/,
+            classpath:/config/client-config-first,
+            classpath:/config/client-discovery-first
+  application:
+    name: server-config
